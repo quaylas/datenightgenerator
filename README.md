@@ -15,28 +15,29 @@ Table of Contents
 ### User Story
 
 ```
-AS AN 
-I WANT
-SO THAT 
+AS A human spending a LOT MORE TIME AT HOME THAN USUAL
+I WANT to take the boring planning out of date night
+SO THAT I can enjoy more time with the people I care about.
 ```
 
 ### Acceptance Criteria
+GIVEN THAT I have decided to have a date night ...
 
 ```
-WHEN I 
-THEN I 
+WHEN I open the date night generator 
+THEN I see options to search for cocktails, meals, and music.
 ```
 ```
-WHEN I 
-THEN I 
+WHEN I search for cocktail recipes
+THEN I can select alcoholic/non, main spirit, main mixer.
 ```
 ```
-WHEN I 
-THEN I 
+WHEN I search for meal/food recipes
+THEN I can select a category or main ingredient.
 ```
 ```
-WHEN I 
-THEN I 
+WHEN I search for music
+THEN I can make selections for the type of music I'd like to try.
 ```
 
 ---

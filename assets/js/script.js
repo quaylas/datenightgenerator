@@ -14,7 +14,6 @@ var getDrinksByMainIngredient = function (ingredient) {
             alert('Something went wrong!');
         }
     });
-
 };
 
 getDrinksByMainIngredient('vodka');
