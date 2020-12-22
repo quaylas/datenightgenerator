@@ -7,7 +7,12 @@ var getDrinksByMainIngredient = function (ingredient) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
-            })
+
+                for (var i = 0; i < data.length; i++) {
+                    return Math.floor(Math.random() * 10);
+                }
+            });
+            document.getElementById("response-container").innerHTML = data;
         }
         // if unsuccessful, open a modal
         else {
