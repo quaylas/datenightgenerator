@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <section class='hero is-dark'>
+    <section class='hero is-primary'>
         <div class='hero-body'>
             <div class="container">
                 <h1 class="title">
@@ -43,13 +43,8 @@
                     <div class="content">
                         <form id="drink-form">
                             <div class="form-group">
-                                <select name="drink-type">
-                                    <option value="" disabled selected>Pick a drink type</option>
-                                    <option value="Alcoholic">Alcoholic</option>
-                                    <option value="Non-Alcoholic">Non-Alcoholic</option>
-                                </select>
                                 <input type="text" name="ingredient" placeholder="Enter Drink Ingredient" />
-                                <button class="btn" id="generate-drink" type="submit">Search Drinks</button>
+                                <button class="btn" id="search" type="submit">Search Drinks</button>
                                 <div id="response-container"></div>
                             </div>
                         </form>
