@@ -8,14 +8,19 @@ var getDrinksByMainIngredient = function (ingredient) {
             response.json().then(function (data) {
                 console.log(data);
 
-                for (var i = 0; i < data.drinks.length; i++) {
-                    var drink = (data.drinks[i]);
-                    var keys = Object.keys(drink)
-                    var random = Math.floor(Math.random() * drink.strDrink.length);
-                    var drink = data.drinks[i]
-                    document.getElementById("response-container").innerHTML = random;
-                    return Math.floor(Math.random() * 10);
+                var drinkArray = []
+
+                for (var i = 0; i < Math.min(10, data.drinks.length); i++) {
+                    // var drink = (data.drinks[i]);
+                    // var keys = Object.keys(drink)
+
+                    // var random = Math.floor(Math.random() * drink.strDrink.length);
+                    // var drink = data.drinks[i]
+                    var random = Math.floor(Math.random() * data.drinks.length);
+                    drinkArray.push(data.drinks[random].strDrink);
+                    // document.getElementById("response-container").innerHTML = drink;
                 };
+                document.getElementById("response-container").innerHTML = drinkArray;
             })
         }
         // if unsuccessful, open a modal
