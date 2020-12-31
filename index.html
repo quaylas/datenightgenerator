@@ -1,17 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Date Night</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    
+    <section class='hero is-dark'>
+        <div class='hero-body'>
+            <div class="container">
+                <h1 class="title">
+                    Date Night Generator
+                </h1>
+                <h2 class="subtitle">
+                    For all your special evenings at home
+                </h2>
+            </div>
+        </div>
+        <div class='hero-foot'>
+        </div>
+    </section>
+    <section class='section'>
+        <div class="tile is-ancestor is-dark">
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <p class="title">Music</p>
+                    <p class="subtitle">With some content</p>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
+                            pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
+                            facilisis.</p>
+                </article>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <p class="title">Cocktails</p>
+                    <p class="subtitle">Let's pick the perfect drink</p>
+                    <div class="content">
+                        <form id="drink-form">
+                            <div class="form-group">
+                                <input type="text" name="spirit" placeholder="Enter Drink Ingredient" />
+                                <button class="btn" id="search" type="submit">Search Drinks</button>
+                                <div id="response-container">Where is this?</div>
+                            </div>
+                        </form>
+                </article>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <p class="title">Food</p>
+                    <p class="subtitle">Let's pick the perfect dinner</p>
+                    <div class="content">
+                        <form id="food-form">
+                            <div class="form-group">
+                                <input type="text" name="ingredient" id="ingredient-input" placeholder="Enter Food Ingredient" />
+                                <button class="btn" id="search-recipes" type="submit">Search Recipes</button>
+                                <div id="recipe-container"></div>
+                            </div>
+                        </form>
 
-
-
-
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <footer class='footer'>
+        <div class='content has-text-centered'>
+            FOOTER TEXT HERE
+        </div>
+    </footer>
+    <script src='./assets/js/script.js'></script>
 </body>
-
 </html>
