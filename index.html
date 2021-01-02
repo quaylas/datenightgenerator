@@ -42,12 +42,16 @@
             </div>
             <div class="tile is-parent">
                 <article class="tile is-child box">
-                    <h3 class="title">Food</h3>
-                    <p class="subtitle">With some content</p>
+                    <p class="title">Food</p>
+                    <p class="subtitle">Let's pick the perfect dinner</p>
                     <div class="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
-                            pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
-                            facilisis.</p>
+                        <form id="food-form">
+                            <div class="form-group">
+                                <input type="text" name="ingredient" id="ingredient-input" placeholder="Enter Food Ingredient" />
+                                <button class="btn" id="search-recipes" type="submit">Search Recipes</button>
+                                <div id="recipe-container"></div>
+                            </div>
+                        </form>
                     </div>
                 </article>
             </div>
@@ -83,10 +87,6 @@
     </footer>
     <script src='./assets/js/script.js'></script>
 </body>
-<<<<<<< HEAD
 
 
 </html>
-=======
-</html>
->>>>>>> 163b37ba28155f2ba77eac2574536dc9c5577371
