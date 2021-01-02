@@ -49,4 +49,4 @@ var loadRecipes = function (event) {
 var btn = document.getElementById("search-recipes");
    btn.addEventListener("click", loadRecipes);
 var recipeContainerEl = document.getElementById("recipe-container");
-recipeContainerEl.addEventListener("click", saveRecipe);
+// recipeContainerEl.addEventListener("click", saveRecipe);
