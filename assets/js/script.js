@@ -22,11 +22,14 @@ var getDrinksByMainIngredient = function (ingredient) {
                     // var drink = data.drinks[i]
                     var random = Math.floor(Math.random() * data.drinks.length);
                     drinkArray.push(data.drinks[random].strDrink);
-                    var drinkContainer = document.createElement("p");
+                    var drinkContainer = document.createElement('div');
                     drinkContainer.classList.add("drink-list-item");
                     drinkContainer.setAttribute("data-id", i);
                     drinkContainer.setAttribute("data-drinkId", data.drinks[random].idDrink);
-                    drinkContainer.textContent = data.drinks[random].strDrink;
+
+                    var drinkName = document.createElement("h4");
+                    drinkName.textContent = data.drinks[random].strDrink;
+                    drinkContainer.appendChild(drinkName);
                     drinkList.appendChild(drinkContainer);
                     // document.getElementById("response-container").innerHTML = drink;
                 };
@@ -91,7 +94,6 @@ var getDrinkRecipe = function(drinkId) {
                 }
                 console.log(drinkIngredients);
                 console.log(drinkQuantities);
-
             })
         }
         // if unsuccessful, open a modal
@@ -112,5 +114,7 @@ var drinkRecipeHandler = function(event) {
 // loadDrinks()
 // });
 
-spiritBtn.addEventListener("click", loadDrinks);
+spiritBtn.addEventListener("click", loadDrinks); 
+var responseContainerEl = document.getElementById('response-container');
+responseContainerEl.addEventListener('click', drinkRecipeHandler);
 getDrinkRecipe(13200);
