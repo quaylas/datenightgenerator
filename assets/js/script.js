@@ -1,4 +1,6 @@
 
+// begin drink section
+
 var spiritBtn = document.getElementById("spiritBtn");
 
 var getDrinksByMainIngredient = function (ingredient) {
@@ -37,38 +39,32 @@ var getDrinksByMainIngredient = function (ingredient) {
             }, error => {
                 var modal = document.getElementById("drinkModal");
                 modal.style.display = "block";
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsById("modal-close");
+
+                // When the user clicks on the button, open the modal
+                //btn.onclick = function () {
+                //    modal.style.display = "block";
+                //}
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                //window.onclick = function (event) {
+                //if (event.target == modal) {
+                //modal.style.display = "none";
+                //}
+
             });
         }
-        // if unsuccessful, open a modal
-        else {
-            console.log("error");
-            // Get the modal
-            var modal = document.getElementById("drinkModal");
-            modal.style.display = "block";
 
-            // Get the <span> element that closes the modal
-            //var span = document.getElementsById("modal-close");
-
-            // When the user clicks on the button, open the modal
-            //btn.onclick = function () {
-            //    modal.style.display = "block";
-            //}
-
-            // When the user clicks on <span> (x), close the modal
-            //span.onclick = function () {
-            //    modal.style.display = "none";
-            //}
-
-            // When the user clicks anywhere outside of the modal, close it
-            //window.onclick = function (event) {
-            //    if (event.target == modal) {
-            //        modal.style.display = "none";
-            //   }
-            //}
-        }
     }, error => {
         //pop modal saying the API is down
-        console.log("api is down");
+
     });
 };
 
@@ -147,6 +143,11 @@ spiritBtn.addEventListener("click", loadDrinks);
 var responseContainerEl = document.getElementById('response-container');
 responseContainerEl.addEventListener('click', drinkRecipeHandler);
 getDrinkRecipe(13200);
+
+// end drink section
+
+// begin food section
+
 var getRecipeByIngredient = function (ingredients, queryString) {
     event.preventDefault()
 
