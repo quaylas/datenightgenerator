@@ -10,6 +10,14 @@
 </head>
 
 <body>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="modal-close" class="close">&times;</span>
+            <p>Opps! Your search did not return any recipes. Please check your spelling and
+                try again!</p>
+        </div>
+    </div>
     <section class='hero is-primary'>
         <div class='hero-body'>
             <div class="container">
@@ -28,7 +36,7 @@
         <div class="tile is-ancestor is-dark">
             <div class="tile is-parent is-vertical">
                 <article class="tile is-child box">
-                    <h3 class="title">Cocktails</h3>
+                    <h2 class="title">Cocktails</h2>
                     <p class="subtitle">Let's pick the perfect drink</p>
                     <div class="content">
                         <form id="drink-form">
@@ -39,19 +47,11 @@
                                 <div id="response-container"></div>
                             </div>
                         </form>
-                        <div id="drinkModal" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span id="modal-close" class="close">&times;</span>
-                                <p>Opps! Your search did not return any drink recipes. Please check your spelling and
-                                    try again!</p>
-                            </div>
-                        </div>
                 </article>
             </div>
             <div class="tile is-parent">
                 <article class="tile is-child box">
-                    <p class="title">Food</p>
+                    <h2 class="title">Food</h2>
                     <p class="subtitle">Let's pick the perfect dinner</p>
                     <div class="content">
                         <form id="food-form">
@@ -62,14 +62,6 @@
                                 <div id="recipe-container"></div>
                             </div>
                         </form>
-                        <div id="foodModal" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span id="modal-close" class="close">&times;</span>
-                                <p>Opps! Your search did not return any food recipes. Please check your spelling and
-                                    try again!</p>
-                            </div>
-                        </div>
                     </div>
                 </article>
             </div>
@@ -100,6 +92,8 @@
     </section>
     <footer class='footer'>
         <img src="./assets/images/logo 2.png" alt="DNG logo with moon" width="100" height="100">
+        <h2>❤️ Made with love by QS, MP, & SG</h2>
+        &copy; 2021 Date Night Generator
     </footer>
     <script src='./assets/js/script.js'></script>
 </body>

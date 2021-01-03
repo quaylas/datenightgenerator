@@ -37,7 +37,7 @@ var getDrinksByMainIngredient = function (ingredient) {
                 };
                 // document.getElementById("response-container").innerHTML = drinkArray;
             }, error => {
-                var modal = document.getElementById("drinkModal");
+                var modal = document.getElementById("myModal");
                 modal.style.display = "block";
 
                 // Get the <span> element that closes the modal
