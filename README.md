@@ -47,6 +47,13 @@ THEN I can select a recipe from a short list of dishes.
 * -
 
 ---
+## Links
+
+Deployed Application:
+
+GitHub Repository: https://github.com/quaylas/datenightgenerator.git
+
+---
 ## Images
 ### Desktop View
 <!-- 
