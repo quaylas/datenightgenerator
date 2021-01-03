@@ -41,7 +41,7 @@ var getDrinksByMainIngredient = function (ingredient) {
                 modal.style.display = "block";
 
                 // Get the <span> element that closes the modal
-                var span = document.getElementsById("modal-close");
+                var span = document.getElementById("modal-close");
 
                 // When the user clicks on the button, open the modal
                 //btn.onclick = function () {
@@ -201,5 +201,4 @@ var btn = document.getElementById("search-recipes");
 btn.addEventListener("click", loadRecipes);
 var recipeContainerEl = document.getElementById("recipe-container");
 // recipeContainerEl.addEventListener("click", saveRecipe);
-
 
