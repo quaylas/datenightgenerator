@@ -112,18 +112,9 @@ var drinkRecipeHandler = function (event) {
     getDrinkRecipe(drinkId);
 };
 
-// getDrinksByMainIngredient('rum');
-// spiritBtn.addEventListener("click", function () {
-// loadDrinks()
-// });
-
-spiritBtn.addEventListener("click", loadDrinks);
-var responseContainerEl = document.getElementById('response-container');
-responseContainerEl.addEventListener('click', drinkRecipeHandler);
-getDrinkRecipe(13200);
 var getRecipeByIngredient = function (ingredients, queryString) {
     event.preventDefault()
-
+// recipe code starts
     var page = 2;
 
     var apiUrl =
@@ -190,13 +181,18 @@ var loadRecipes = function (event) {
     getRecipeByIngredient(ingredientInput, "");
     document.getElementById("food-form").reset();
 }
+// RECIPE END
 var btn = document.getElementById("search-recipes");
 btn.addEventListener("click", loadRecipes);
 var recipeContainerEl = document.getElementById("recipe-container");
 
 recipeContainerEl.addEventListener("click", saveRecipe)
 
+
+spiritBtn.addEventListener("click", loadDrinks);
+var responseContainerEl = document.getElementById('response-container');
+responseContainerEl.addEventListener('click', drinkRecipeHandler);
+getDrinkRecipe(13200);
+
+
 loadSavedMenu();
-
-
-
