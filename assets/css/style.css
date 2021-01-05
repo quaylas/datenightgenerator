@@ -1,3 +1,18 @@
 #response-container{
     padding: 20px 10px;
 }
+
+.drink-list-item {
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+.drink-list-item article {
+    font-size: 16px;
+}
+.drink-list-item ul {
+    margin-left: 1.5em;
+}
+.drink-list-item p {
+    padding-left: .5em;
+}
