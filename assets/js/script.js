@@ -53,9 +53,6 @@ var getDrinksByMainIngredient = function (ingredient) {
             });
         }
 
-    }, error => {
-        //pop modal saying the API is down
-
     });
 };
 
@@ -112,10 +109,7 @@ var getDrinkRecipe = function (drinkId) {
                 console.log(drinkQuantities);
             })
         }
-        // if unsuccessful, open a modal
-        else {
-            alert('Something went wrong!');
-        }
+
     });
 };
 
@@ -144,16 +138,33 @@ var getRecipeByIngredient = function (ingredients, queryString) {
             console.log(data);
             var recipeContainer = document.getElementById("recipe-container");
             recipeContainer.innerHTML = "";
-            for (i = 0; i < 3; i++) {
-                var recipe = data.results[i].title;
-                var recipeUrl = data.results[i].href;
-                var recipeName = document.createElement("p");
-                recipeName.innerHTML = `<a href="${recipeUrl}" target="_blank">${recipe}</a> <span class="saveRecipe" data-name="${recipe}" data-url="${recipeUrl}">Save Recipe</span>`;
-                // recipeName.onclick= saveBtn;
+            var recipeObject = data.results;
+            console.log(recipeObject.length);
+            debugger
+            if (recipeObject.length > 0) {
+                for (i = 0; i < 3; i++) {
+                    var recipe = data.results[i].title;
+                    var recipeUrl = data.results[i].href;
+                    var recipeName = document.createElement("p");
+                    recipeName.innerHTML = `<a href="${recipeUrl}" target="_blank">${recipe}</a> <span class="saveRecipe" data-name="${recipe}" data-url="${recipeUrl}">Save Recipe</span>`;
+                    // recipeName.onclick= saveBtn;
 
 
-                recipeContainer.appendChild(recipeName);
+                    recipeContainer.appendChild(recipeName);
 
+                }
+            } else {
+
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementById("modal-close");
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
             }
 
         });
@@ -194,6 +205,7 @@ var loadRecipes = function (event) {
     getRecipeByIngredient(ingredientInput, "");
     document.getElementById("food-form").reset();
 }
+
 // RECIPE END
 var btn = document.getElementById("search-recipes");
 btn.addEventListener("click", loadRecipes);
