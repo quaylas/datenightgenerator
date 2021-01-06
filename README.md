@@ -6,7 +6,7 @@ Table of Contents
 * [User Story and Acceptance Criteria](#user-story-and-acceptance-criteria)
 * [Key Features](#key-features)
 * [Future Improvements](#future-improvements)
-* [Links] 
+* [Links](#links)
 * [Images](#images)
 
 ---
@@ -46,6 +46,7 @@ THEN I can select a recipe from a short list of dishes.
 
 * - Add a section for music selection using the Spotify API
 * - Add ability to select alcoholic or non-alcoholic drinks
+* - Add category selector to food (i.e. dinner, lunch, breakfast)
 * - Add ability to drag and drop selected choices to save a menu fo recipes
 
 ---

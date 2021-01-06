@@ -40,6 +40,7 @@ var getDrinksByMainIngredient = function (ingredient) {
                 };
                 // document.getElementById("response-container").innerHTML = drinkArray;
             }, error => {
+                console.error('Error', error);
                 var modal = document.getElementById("myModal");
                 modal.style.display = "block";
 
@@ -54,8 +55,17 @@ var getDrinksByMainIngredient = function (ingredient) {
         }
 
     }, error => {
-        //pop modal saying the API is down
+        console.error('Error:', error);
+        var modal = document.getElementById("errorModal");
+        modal.style.display = "block";
 
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("modal-exit");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
     });
 };
 
@@ -112,11 +122,20 @@ var getDrinkRecipe = function (drinkId) {
                 console.log(drinkQuantities);
             })
         }
-        // if unsuccessful, open a modal
-        else {
-            alert('Something went wrong!');
-        }
-    });
+    })
+        .catch((error) => {
+            console.error('Error:', error);
+            var modal = document.getElementById("errorModal");
+            modal.style.display = "block";
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementById("modal-exit");
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+        });
 };
 
 // event handler for a click on a returned drink recipe
@@ -157,8 +176,19 @@ var getRecipeByIngredient = function (ingredients, queryString) {
             }
 
         });
+    }, error => {
+        console.error('Error:', error);
+        var modal = document.getElementById("errorModal");
+        modal.style.display = "block";
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("modal-exit");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
     });
-    // 
 };
 var saveRecipe = function () {
     if (event.target.class = "span") {
@@ -205,7 +235,7 @@ recipeContainerEl.addEventListener("click", saveRecipe)
 spiritBtn.addEventListener("click", loadDrinks);
 var responseContainerEl = document.getElementById('response-container');
 responseContainerEl.addEventListener('click', drinkRecipeHandler);
-getDrinkRecipe(13200);
+
 
 
 loadSavedMenu();
