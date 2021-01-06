@@ -123,7 +123,7 @@ var drinkRecipeHandler = function (event) {
     var drinkId = event.target.getAttribute('data-drinkid');
     var drinkContainer = event.target;
     var drinkRecipeContainer = event.target.getElementsByTagName('article');
-    console.log(drinkRecipeContainer);
+    console.log(drinkContainer);
     getDrinkRecipe(drinkId, drinkContainer);
 };
 
@@ -191,6 +191,7 @@ var saveRecipe = function () {
 
     }
 };
+
 var loadSavedMenu = function () {
     // load eats section start
     var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"))
@@ -203,7 +204,6 @@ var loadSavedMenu = function () {
         }
     }
 };
-
 
 var loadRecipes = function (event) {
     event.preventDefault();
@@ -224,7 +224,5 @@ recipeContainerEl.addEventListener("click", saveRecipe)
 spiritBtn.addEventListener("click", loadDrinks);
 var responseContainerEl = document.getElementById('response-container');
 responseContainerEl.addEventListener('click', drinkRecipeHandler);
-getDrinkRecipe(13200);
-
 
 loadSavedMenu();

@@ -10,6 +10,7 @@
 .drink-list-item:hover{
     background: rgba(0,209,198, .2);
     transition: .3s ease-in-out;
+    color: rgba(0,0,0, .5);
 }
 
 .drink-list-item article {
