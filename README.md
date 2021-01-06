@@ -44,8 +44,9 @@ THEN I can select a recipe from a short list of dishes.
 ---
 ## Future Improvements
 
-* -
-* -
+* - Add a section for music selection using the Spotify API
+* - Add ability to select alcoholic or non-alcoholic drinks
+* - Add ability to drag and drop selected choices to save a menu fo recipes
 
 ---
 ## Links
