@@ -10,15 +10,12 @@ var getDrinksByMainIngredient = function (ingredient) {
         if (response.ok) {
             response.json().then(function (data) {
 
-                var drinkArray = []
-                var drinkList = document.getElementById("response-container")
+                var drinkArray = [];
+                var drinkList = document.getElementById("response-container");
+                drinkList.innerHTML = '';
 
                 for (var i = 0; i < Math.min(5, data.drinks.length); i++) {
-                    // var drink = (data.drinks[i]);
-                    // var keys = Object.keys(drink)
 
-                    // var random = Math.floor(Math.random() * drink.strDrink.length);
-                    // var drink = data.drinks[i]
                     var random = Math.floor(Math.random() * data.drinks.length);
                     drinkArray.push(data.drinks[random].strDrink);
 
@@ -67,6 +64,7 @@ var printDrinkRecipe = function(data, drinkContainer) {
 
     // create an unordered list to hold the drink recipe
     var drinkRecipe = document.createElement('article');
+    drinkRecipe.classList.add('recipe-displayed');
     var drinkIngredientsList = document.createElement('ul');
 
     // create an array of the object's property key-value pairs and initialize arrays for ingredients and quantities
@@ -113,6 +111,8 @@ var printDrinkRecipe = function(data, drinkContainer) {
 var drinkRecipeHandler = function (event) {
     var drinkId = event.target.getAttribute('data-drinkid');
     var drinkContainer = event.target;
+    var drinkRecipeContainer = event.target.getElementsByTagName('article');
+    console.log(drinkRecipeContainer);
     getDrinkRecipe(drinkId, drinkContainer);
 };
 
