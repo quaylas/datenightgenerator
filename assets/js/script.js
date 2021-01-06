@@ -2,6 +2,9 @@
 // begin drink section
 
 var spiritBtn = document.getElementById("spiritBtn");
+// variables for food API's
+var eatsContainerEl = document.getElementById("menu-eats");
+
 
 var getDrinksByMainIngredient = function (ingredient) {
 
@@ -122,23 +125,9 @@ var drinkRecipeHandler = function (event) {
     getDrinkRecipe(drinkId);
 };
 
-// getDrinksByMainIngredient('rum');
-// spiritBtn.addEventListener("click", function () {
-// loadDrinks()
-// });
-
-spiritBtn.addEventListener("click", loadDrinks);
-var responseContainerEl = document.getElementById('response-container');
-responseContainerEl.addEventListener('click', drinkRecipeHandler);
-getDrinkRecipe(13200);
-
-// end drink section
-
-// begin food section
-
 var getRecipeByIngredient = function (ingredients, queryString) {
     event.preventDefault()
-
+    // recipe code starts
     var page = 2;
 
     var apiUrl =
@@ -159,25 +148,45 @@ var getRecipeByIngredient = function (ingredients, queryString) {
                 var recipe = data.results[i].title;
                 var recipeUrl = data.results[i].href;
                 var recipeName = document.createElement("p");
-                recipeName.innerHTML = `<a href="${recipeUrl}" target="_blank">${recipe}</a> <span class="saveRecipe">Save Recipe</span>`;
+                recipeName.innerHTML = `<a href="${recipeUrl}" target="_blank">${recipe}</a> <span class="saveRecipe" data-name="${recipe}" data-url="${recipeUrl}">Save Recipe</span>`;
+                // recipeName.onclick= saveBtn;
+
+
                 recipeContainer.appendChild(recipeName);
 
             }
 
         });
     });
-
+    // 
 };
 var saveRecipe = function () {
-    if (event.target.class = "p") {
-        var savedRecipes = []
-        var recipeName = event.target.textContent;
-        console.log(recipeName);
-        savedRecipes.push(recipeName)
+    if (event.target.class = "span") {
+        var savedRecipes = JSON.parse(localStorage.getItem("foodRecipes")) || [];
+        var recipe = { "name": event.target.getAttribute("data-name"), "url": event.target.getAttribute("data-url") };
+        savedRecipes.push(recipe);
+        localStorage.setItem("foodRecipes", JSON.stringify(savedRecipes));
         console.log(savedRecipes);
+        var menuItemContainer = document.createElement("p");
+        menuItemContainer.innerHTML = `<a href="${event.target.getAttribute("data-url")}" target="_blank">${event.target.getAttribute("data-name")}</a>`;
+        eatsContainerEl.appendChild(menuItemContainer);
+
     }
 };
-// getRecipeByIngredient("pasta","dinner")
+var loadSavedMenu = function () {
+    // load eats section start
+    var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"))
+    console.log(foodRecipesLocal)
+    if (foodRecipesLocal) {
+        for (i = 0; i < foodRecipesLocal.length; i++) {
+            var menuItemContainer = document.createElement("p");
+            menuItemContainer.innerHTML = `<a href="${foodRecipesLocal[i].url}" target="_blank">${foodRecipesLocal[i].name}</a>`;
+            eatsContainerEl.appendChild(menuItemContainer);
+        }
+    }
+};
+
+
 var loadRecipes = function (event) {
     event.preventDefault();
     var ingredientInput = document.getElementById("ingredient-input").value.trim();
@@ -185,8 +194,18 @@ var loadRecipes = function (event) {
     getRecipeByIngredient(ingredientInput, "");
     document.getElementById("food-form").reset();
 }
+// RECIPE END
 var btn = document.getElementById("search-recipes");
 btn.addEventListener("click", loadRecipes);
 var recipeContainerEl = document.getElementById("recipe-container");
-// recipeContainerEl.addEventListener("click", saveRecipe);
 
+recipeContainerEl.addEventListener("click", saveRecipe)
+
+
+spiritBtn.addEventListener("click", loadDrinks);
+var responseContainerEl = document.getElementById('response-container');
+responseContainerEl.addEventListener('click', drinkRecipeHandler);
+getDrinkRecipe(13200);
+
+
+loadSavedMenu();
