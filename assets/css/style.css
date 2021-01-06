@@ -10,6 +10,14 @@
     color:hsl(0, 0%, 71%);
 }
 
+.content h3 {
+  color:hsl(0, 0%, 71%)
+}
+
+.footer {
+  padding: 1.5rem !important
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
