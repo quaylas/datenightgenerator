@@ -6,6 +6,7 @@ Table of Contents
 * [User Story and Acceptance Criteria](#user-story-and-acceptance-criteria)
 * [Key Features](#key-features)
 * [Future Improvements](#future-improvements)
+* [Links] 
 * [Images](#images)
 
 ---
@@ -15,30 +16,25 @@ Table of Contents
 ### User Story
 
 ```
-AS AN 
-I WANT
-SO THAT 
+AS A human spending a LOT MORE TIME AT HOME THAN USUAL
+I WANT to take the boring planning out of date night
+SO THAT I can enjoy more time with the people I care about.
 ```
 
 ### Acceptance Criteria
 
 ```
-WHEN I 
-THEN I 
+WHEN I open the date night generator 
+THEN I see options to search for cocktails and meals.
 ```
 ```
-WHEN I 
-THEN I 
+WHEN I search by a main alcoholic ingredient
+THEN I can select a recipe from a short list of drinks. 
 ```
 ```
-WHEN I 
-THEN I 
+WHEN I search by a meal category/ingredient
+THEN I can select a recipe from a short list of dishes.
 ```
-```
-WHEN I 
-THEN I 
-```
-
 ---
 
 ## Key Features
@@ -48,8 +44,16 @@ THEN I
 ---
 ## Future Improvements
 
-* -
-* -
+* - Add a section for music selection using the Spotify API
+* - Add ability to select alcoholic or non-alcoholic drinks
+* - Add ability to drag and drop selected choices to save a menu fo recipes
+
+---
+## Links
+
+Deployed Application:
+
+GitHub Repository: https://github.com/quaylas/datenightgenerator
 
 ---
 ## Images
