@@ -127,8 +127,9 @@ var drinkRecipeHandler = function (event) {
     getDrinkRecipe(drinkId, drinkContainer);
 };
 
-
-    // saving recipe into array and populating the first 3 results, then we are able to save the recipe to the Menu section of the page AKA append to the child container of menu 
+// recipe code starts
+// if successful, format response and return JSON
+//saving recipes into localStorage, and print info into menu
 ;
 var saveRecipe = function () {
     if (event.target.class = "span") {
@@ -143,22 +144,23 @@ var saveRecipe = function () {
 
     }
 };
-// save the recipe into localStrorage/Menu section of page
+// check localStorage and populate saved info into Menu Container
 var loadSavedMenu = function () {
     // load eats section start
     var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"))
     console.log(foodRecipesLocal)
     if (foodRecipesLocal) {
-        for (i = 0; i < foodRecipesLocal.length; i++) {
+        for (i = 0; i < foodRecipesLocal.length; i++) { //help?
             var menuItemContainer = document.createElement("p");
             menuItemContainer.innerHTML = `<a href="${foodRecipesLocal[i].url}" target="_blank">${foodRecipesLocal[i].name}</a>`;
             eatsContainerEl.appendChild(menuItemContainer);
         }
     }
 };
+// requesting a recipe on ingredient entered by user
 var getRecipeByIngredient = function (ingredients, queryString) {
     event.preventDefault()
-    // recipe code starts
+
     var page = 2;
     var apiUrl =
         "https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=" +
@@ -167,6 +169,7 @@ var getRecipeByIngredient = function (ingredients, queryString) {
         queryString +
         "&p=" +
         page;
+        //if successful, return response to JSON
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
             var recipeContainer = document.getElementById("recipe-container");
