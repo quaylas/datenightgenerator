@@ -26,7 +26,8 @@ var getDrinksByMainIngredient = function (ingredient) {
 
                     var drinkContainer = document.createElement('div');
                     drinkContainer.classList.add("drink-list-item");
-                    drinkContainer.textContent = data.drinks[random].strDrink;
+                    // drinkContainer.textContent = data.drinks[random].strDrink;
+                    drinkContainer.innerHTML = `<div class="drink-name" data-drinkid="${data.drinks[random].idDrink}">${data.drinks[random].strDrink}</div> <i class="fas fa-save"></i>`;
                     drinkContainer.setAttribute("data-drinkid", data.drinks[random].idDrink);
                     drinkContainer.setAttribute("data-id", i);
                     drinkList.appendChild(drinkContainer);
@@ -74,8 +75,9 @@ var getDrinkRecipe = function (drinkId, drinkContainer) {
 var printDrinkRecipe = function(data, drinkContainer) {
 
     // create an unordered list to hold the drink recipe
-    var drinkRecipe = document.createElement('article');
+    var drinkRecipe = document.createElement('div');
     drinkRecipe.classList.add('recipe-displayed');
+    drinkRecipe.setAttribute('id', `recipe-${data.drinks[0].idDrink}`);
     var drinkIngredientsList = document.createElement('ul');
 
     // create an array of the object's property key-value pairs and initialize arrays for ingredients and quantities
@@ -118,13 +120,30 @@ var printDrinkRecipe = function(data, drinkContainer) {
     drinkContainer.appendChild(drinkRecipe);
 };
 
+var toggleDrinkRecipe = function(drinkRecipeContainer){
+    var recipeClassName = drinkRecipeContainer.className;
+
+    if (recipeClassName === 'recipe-displayed'){
+        drinkRecipeContainer.className = 'recipe-hidden';
+    }
+    else if (recipeClassName === 'recipe-hidden'){
+        drinkRecipeContainer.className = 'recipe-displayed';
+    }
+
+};
+
 // event handler for a click on a returned drink recipe
 var drinkRecipeHandler = function (event) {
     var drinkId = event.target.getAttribute('data-drinkid');
     var drinkContainer = event.target;
-    var drinkRecipeContainer = event.target.getElementsByTagName('article');
-    console.log(drinkContainer);
-    getDrinkRecipe(drinkId, drinkContainer);
+    var drinkRecipeContainer = drinkContainer.firstElementChild;
+
+    if (!drinkRecipeContainer){
+        getDrinkRecipe(drinkId, drinkContainer);
+    }
+    else {
+        toggleDrinkRecipe(drinkRecipeContainer);
+    }
 };
 
 var getRecipeByIngredient = function (ingredients, queryString) {
@@ -147,15 +166,12 @@ var getRecipeByIngredient = function (ingredients, queryString) {
             recipeContainer.innerHTML = "";
             var recipeObject = data.results;
             console.log(recipeObject.length);
-            debugger
             if (recipeObject.length > 0) {
                 for (i = 0; i < 3; i++) {
                     var recipe = data.results[i].title;
                     var recipeUrl = data.results[i].href;
                     var recipeName = document.createElement("p");
                     recipeName.innerHTML = `<a href="${recipeUrl}" target="_blank">${recipe}</a> <span class="saveRecipe" data-name="${recipe}" data-url="${recipeUrl}">Save Recipe</span>`;
-                    // recipeName.onclick= saveBtn;
-
 
                     recipeContainer.appendChild(recipeName);
 
@@ -194,8 +210,8 @@ var saveRecipe = function () {
 
 var loadSavedMenu = function () {
     // load eats section start
-    var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"))
-    console.log(foodRecipesLocal)
+    var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
+
     if (foodRecipesLocal) {
         for (i = 0; i < foodRecipesLocal.length; i++) {
             var menuItemContainer = document.createElement("p");
@@ -222,6 +238,7 @@ recipeContainerEl.addEventListener("click", saveRecipe)
 
 
 spiritBtn.addEventListener("click", loadDrinks);
+
 var responseContainerEl = document.getElementById('response-container');
 responseContainerEl.addEventListener('click', drinkRecipeHandler);
 
