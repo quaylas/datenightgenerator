@@ -47,10 +47,11 @@ THEN I can select a recipe from a short list of dishes.
 ---
 ## Future Improvements
 
-* - Add a section for music selection using the Spotify API
-* - Add ability to select alcoholic or non-alcoholic drinks
-* - Add category selector to food (i.e. dinner, lunch, breakfast)
-* - Add ability to drag and drop selected choices to save a menu fo recipes
+* - Expand site to include options for music selection
+* - Add alcoholic/non-alcoholic selector for drink recipes
+* - Add category selector for food recipes
+* - Incorporate drag/drop functionality for menu-building
+
 
 ---
 ## Links
