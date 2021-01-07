@@ -6,7 +6,7 @@ Table of Contents
 * [User Story and Acceptance Criteria](#user-story-and-acceptance-criteria)
 * [Key Features](#key-features)
 * [Future Improvements](#future-improvements)
-* [Links] 
+* [Links](#links)
 * [Images](#images)
 
 ---
@@ -39,19 +39,24 @@ THEN I can select a recipe from a short list of dishes.
 
 ## Key Features
 
+* Allows users to input search criteria
+* Displays recipes choices inline 
+* Allows users to save drink and food recipes to local storage
 * Responsive layout leveraging the Bulma CSS Framework.
 
 ---
 ## Future Improvements
 
-* - Add a section for music selection using the Spotify API
-* - Add ability to select alcoholic or non-alcoholic drinks
-* - Add ability to drag and drop selected choices to save a menu fo recipes
+* - Expand site to include options for music selection
+* - Add alcoholic/non-alcoholic selector for drink recipes
+* - Add category selector for food recipes
+* - Incorporate drag/drop functionality for menu-building
+
 
 ---
 ## Links
 
-Deployed Application:
+Deployed Application: https://quaylas.github.io/datenightgenerator/
 
 GitHub Repository: https://github.com/quaylas/datenightgenerator
 

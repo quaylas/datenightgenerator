@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date Night</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -16,6 +18,13 @@
             <span id="modal-close" class="close">&times;</span>
             <p>Oops! Your search did not return any recipes. Please check your spelling and
                 try again!</p>
+        </div>
+    </div>
+    <div id="errorModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="modal-exit" class="close">&times;</span>
+            <p>Could not connect to resource. Please try again soon.</p>
         </div>
     </div>
     <section class='hero is-primary'>
@@ -35,12 +44,14 @@
     <div class="section">
         <div class="notification instructions">
             <h2 class="title"><strong>Let's Plan A Date Night!</strong></h2>
-        <li>Enter a drink or food ingredient into the following search bars.</li>
-        <li>Once results have populated, click on the recipe name to explore it. If you like the recipe, click on the save icon to add it to the menu.</li>
-        <li>The menu section will provide you with all your saved food and drink recipes from your searches. Try something new and have fun! </li>
-        
+            <li>Enter a drink or food ingredient into the following search bars.</li>
+            <li>Once results have populated, click on the recipe name to explore it. If you like the recipe, click on
+                the save icon to add it to the menu.</li>
+            <li>The menu section will provide you with all your saved food and drink recipes from your searches. Try
+                something new and have fun! </li>
+
         </div>
-      </div>
+    </div>
     <section class='section'>
         <div class="tile is-ancestor is-dark">
             <div class="tile is-parent s-vertical">
@@ -52,7 +63,8 @@
                             <div class="form-group">
                                 <input type="text" id="spiritInput" name="spirit"
                                     placeholder="Enter Drink Ingredient" />
-                                <button class="btn" id="spiritBtn" type="submit">Search Drinks</button>
+                                <button type="submit" id="spiritBtn" class="button is-primary"><span
+                                        class="oi oi-magnifying-glass"></span></button>
                                 <div id="response-container"></div>
                             </div>
                         </form>
@@ -67,7 +79,8 @@
                             <div class="form-group">
                                 <input type="text" name="ingredient" id="ingredient-input"
                                     placeholder="Enter Food Ingredient" />
-                                <button class="btn" id="search-recipes" type="submit">Search Recipes</button>
+                                <button type="submit" id="search-recipes" class="button is-primary"><span
+                                        class="oi oi-magnifying-glass"></span></button>
                                 <div id="recipe-container"></div>
                             </div>
                         </form>
@@ -83,9 +96,7 @@
                 <article class="tile is-child is-12 box">
                     <div class="content">
                         <h3 class="title">Drinks</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
-                            pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
-                            facilisis.</p>
+                        <div id="menu-drinks"></div>
                     </div>
                 </article>
                 <article class="tile is-child is-12 box">
