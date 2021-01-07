@@ -171,6 +171,11 @@ var drinkRecipeHandler = function (event) {
     }
 };
 
+// event  handler for a click on a drink in the menu
+var drinkMenuHandler = function(event){
+    console.log('a drink in the menu was clicked');
+};
+
 
     // saving recipe into array and populating the first 3 results, then we are able to save the recipe to the Menu section of the page AKA append to the child container of menu 
 ;
@@ -301,5 +306,6 @@ spiritBtn.addEventListener("click", loadDrinks);
 
 var responseContainerEl = document.getElementById('response-container');
 responseContainerEl.addEventListener('click', drinkRecipeHandler);
+drinksContainerEl.addEventListener('click', drinkMenuHandler);
 
 loadSavedMenu();
