@@ -9,10 +9,10 @@ input[type="text" i] {
 }
 
 .hero-body h1 {
-  font-size: 2.5rem !important;
+    font-size: 2.5rem !important;
 }
 .hero-body .container {
-  margin: .25rem;
+    margin: .25rem;
 }
 .drink-list-item {
     padding: 15px;
@@ -24,7 +24,6 @@ input[type="text" i] {
     transition: .3s ease-in-out;
     color: rgba(0,0,0, .5);
 }
-
 .drink-list-item article {
     font-size: 16px;
 }
@@ -34,6 +33,21 @@ input[type="text" i] {
 .drink-list-item p {
     padding-left: .5em;
     padding-bottom: 10px;
+}
+.drink-list-item i {
+    float: right;
+    color: #00d1b2;
+    width: 10%;
+    padding: 7px 0;
+    text-align: center;
+}
+.drink-list-item i:hover {
+    color: rgba(0,0,0, .5);
+    transition: .2s ease-in-out;
+}
+.drink-name {
+    display: inline-block;
+    width: 90%;
 }
 .recipe-hidden {
     display: none;
@@ -55,8 +69,8 @@ input[type="text" i] {
 
 /*styling for intructions */
 .instructions {
-  background: rgba(0,209,198, .2) !important;
-  color: rgba(0,0,0, .5);
+    background: rgba(0,209,198, .2) !important;
+    color: rgba(0,0,0, .5);
 }
 /* The Modal (background) */
 .modal {

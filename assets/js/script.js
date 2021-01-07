@@ -4,6 +4,7 @@
 var spiritBtn = document.getElementById("spiritBtn");
 // variables for food API's
 var eatsContainerEl = document.getElementById("menu-eats");
+var drinksContainerEl = document.getElementById("menu-drinks");
 
 
 var getDrinksByMainIngredient = function (ingredient) {
@@ -26,7 +27,8 @@ var getDrinksByMainIngredient = function (ingredient) {
 
                     var drinkContainer = document.createElement('div');
                     drinkContainer.classList.add("drink-list-item");
-                    drinkContainer.textContent = data.drinks[random].strDrink;
+                    // drinkContainer.textContent = data.drinks[random].strDrink;
+                    drinkContainer.innerHTML = `<div class="drink-name" data-drinkid="${data.drinks[random].idDrink}">${data.drinks[random].strDrink}</div> <i class="fas fa-save saveDrinkBtn" data-drinkname="${data.drinks[random].strDrink}" data-drinkid="${data.drinks[random].idDrink}"></i>`;
                     drinkContainer.setAttribute("data-drinkid", data.drinks[random].idDrink);
                     drinkContainer.setAttribute("data-id", i);
                     drinkList.appendChild(drinkContainer);
@@ -75,8 +77,9 @@ var getDrinkRecipe = function (drinkId, drinkContainer) {
 var printDrinkRecipe = function (data, drinkContainer) {
 
     // create an unordered list to hold the drink recipe
-    var drinkRecipe = document.createElement('article');
+    var drinkRecipe = document.createElement('div');
     drinkRecipe.classList.add('recipe-displayed');
+    drinkRecipe.setAttribute('id', `recipe-${data.drinks[0].idDrink}`);
     var drinkIngredientsList = document.createElement('ul');
 
     // create an array of the object's property key-value pairs and initialize arrays for ingredients and quantities
@@ -119,13 +122,54 @@ var printDrinkRecipe = function (data, drinkContainer) {
     drinkContainer.appendChild(drinkRecipe);
 };
 
+var toggleDrinkRecipe = function(drinkRecipeContainer){
+    var recipeClassName = drinkRecipeContainer.className;
+
+    if (recipeClassName === 'recipe-displayed'){
+        drinkRecipeContainer.className = 'recipe-hidden';
+    }
+    else if (recipeClassName === 'recipe-hidden'){
+        drinkRecipeContainer.className = 'recipe-displayed';
+    }
+
+};
+
+var saveDrinkRecipe = function(drinkId, drinkName){
+    console.log(drinkId, drinkName);
+
+    var savedDrinkRecipes = JSON.parse(localStorage.getItem("drinkRecipes")) || [];
+    var drinkRecipe = { "name": drinkName, "id": drinkId };
+    savedDrinkRecipes.push(drinkRecipe);
+    localStorage.setItem("drinkRecipes", JSON.stringify(savedDrinkRecipes));
+
+    var drinkMenuItemContainer = document.createElement("div");
+    drinkMenuItemContainer.textContent = `${drinkName}`;
+    drinksContainerEl.appendChild(drinkMenuItemContainer);
+
+    drinkMenuItemContainer.innerHTML = `<div class="drink-name" data-drinkid="${drinkId}">${drinkName}</div> <span class="oi" data-glyph="trash"></span>`;
+
+};
+
 // event handler for a click on a returned drink recipe
 var drinkRecipeHandler = function (event) {
     var drinkId = event.target.getAttribute('data-drinkid');
     var drinkContainer = event.target;
-    var drinkRecipeContainer = event.target.getElementsByTagName('article');
-    console.log(drinkContainer);
-    getDrinkRecipe(drinkId, drinkContainer);
+    var drinkRecipeContainer = drinkContainer.firstElementChild;
+
+    if(drinkContainer.tagName === 'DIV'){
+
+        if (!drinkRecipeContainer){
+            getDrinkRecipe(drinkId, drinkContainer);
+        }
+        else {
+            toggleDrinkRecipe(drinkRecipeContainer);
+        }
+    }
+
+    else if (drinkContainer.tagName === 'I'){
+        var drinkName = event.target.getAttribute('data-drinkname');
+        saveDrinkRecipe(drinkId, drinkName);
+    }
 };
 
 
@@ -208,6 +252,48 @@ var getRecipeByIngredient = function (ingredients, queryString) {
     });
 
 };
+
+var saveRecipe = function () {
+    if (event.target.class = "span") {
+        var savedRecipes = JSON.parse(localStorage.getItem("foodRecipes")) || [];
+        var recipe = { "name": event.target.getAttribute("data-name"), "url": event.target.getAttribute("data-url") };
+        savedRecipes.push(recipe);
+        localStorage.setItem("foodRecipes", JSON.stringify(savedRecipes));
+        console.log(savedRecipes);
+        var menuItemContainer = document.createElement("p");
+        menuItemContainer.innerHTML = `<a href="${event.target.getAttribute("data-url")}" target="_blank">${event.target.getAttribute("data-name")}</a>`;
+        eatsContainerEl.appendChild(menuItemContainer);
+
+    }
+};
+
+var loadSavedMenu = function () {
+    // load eats section START
+    var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
+
+    if (foodRecipesLocal) {
+        for (i = 0; i < foodRecipesLocal.length; i++) {
+            var menuItemContainer = document.createElement("p");
+            menuItemContainer.innerHTML = `<a href="${foodRecipesLocal[i].url}" target="_blank">${foodRecipesLocal[i].name}</a>`;
+            eatsContainerEl.appendChild(menuItemContainer);
+        }
+    }
+    // load eats section END
+
+    // load drinks section START
+    var drinkRecipesLocal = JSON. parse(localStorage.getItem("drinkRecipes"));
+    console.log(drinkRecipesLocal);
+
+    if (drinkRecipesLocal) {
+        for (k = 0; k < drinkRecipesLocal.length; k++) {
+            var drinkMenuItemContainer = document.createElement("p");
+            drinkMenuItemContainer.innerHTML = `<div class="drink-name" data-drinkid="${drinkRecipesLocal[k].id}">${drinkRecipesLocal[k].name}</div> <span class="oi" data-glyph="trash"></span>`;
+            drinksContainerEl.appendChild(drinkMenuItemContainer);
+        }
+    }
+    // load drinks section END
+};
+
 var loadRecipes = function (event) {
     event.preventDefault();
     var ingredientInput = document.getElementById("ingredient-input").value.trim();
@@ -225,6 +311,7 @@ recipeContainerEl.addEventListener("click", saveRecipe)
 
 
 spiritBtn.addEventListener("click", loadDrinks);
+
 var responseContainerEl = document.getElementById('response-container');
 responseContainerEl.addEventListener('click', drinkRecipeHandler);
 
