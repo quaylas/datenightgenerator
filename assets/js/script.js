@@ -200,10 +200,9 @@ var drinkMenuHandler = function(event){
         loadSavedMenu();
     }
 };
-
 var getRecipeByIngredient = function (ingredients, queryString) {
     event.preventDefault()
-    // recipe code starts
+
     var page = 2;
     var apiUrl =
         "https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=" +
@@ -212,6 +211,7 @@ var getRecipeByIngredient = function (ingredients, queryString) {
         queryString +
         "&p=" +
         page;
+        //if successful, return response to JSON
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
             var recipeContainer = document.getElementById("recipe-container");
