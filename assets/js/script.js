@@ -191,9 +191,7 @@ var drinkMenuHandler = function(event){
         console.log(localDrinkIndex);
 
         var drinkRecipesLocal = JSON.parse(localStorage.getItem("drinkRecipes"));
-        drinkRecipesLocal.splice(localDrinkIndex);
-
-        console.log(drinkRecipesLocal);
+        drinkRecipesLocal.splice(localDrinkIndex, 1);
         
         localStorage.setItem('drinkRecipes', JSON.stringify(drinkRecipesLocal));
 
@@ -217,7 +215,6 @@ var getRecipeByIngredient = function (ingredients, queryString) {
             var recipeContainer = document.getElementById("recipe-container");
             recipeContainer.innerHTML = "";
             var recipeObject = data.results;
-            console.log(recipeObject.length);
             if (recipeObject.length > 0) {
                 for (i = 0; i < 3; i++) {
                     var recipe = data.results[i].title;
@@ -260,11 +257,8 @@ var saveRecipe = function () {
         var recipe = { "name": event.target.getAttribute("data-name"), "url": event.target.getAttribute("data-url") };
         savedRecipes.push(recipe);
         localStorage.setItem("foodRecipes", JSON.stringify(savedRecipes));
-        console.log(savedRecipes);
-        var menuItemContainer = document.createElement("p");
-        menuItemContainer.innerHTML = `<a href="${event.target.getAttribute("data-url")}" target="_blank">${event.target.getAttribute("data-name")}</a>`;
-        eatsContainerEl.appendChild(menuItemContainer);
 
+        loadSavedMenu();
     }
 };
 
@@ -273,9 +267,12 @@ var loadSavedMenu = function () {
     var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
 
     if (foodRecipesLocal) {
+        eatsContainerEl.innerHTML =  '';
         for (i = 0; i < foodRecipesLocal.length; i++) {
-            var menuItemContainer = document.createElement("p");
-            menuItemContainer.innerHTML = `<a href="${foodRecipesLocal[i].url}" target="_blank">${foodRecipesLocal[i].name}</a>`;
+            var menuItemContainer = document.createElement("div");
+            menuItemContainer.className = 'eats-menu-item';
+            menuItemContainer.innerHTML = `<div class="eats-menu-item-container"><a href="${foodRecipesLocal[i].url}" target="_blank">${foodRecipesLocal[i].name}</a> </div> <span id="eats-menu-item-${i}"
+            class="oi oi-trash eats-menu-item-delete"></span>`;
             eatsContainerEl.appendChild(menuItemContainer);
         }
     }
@@ -304,6 +301,28 @@ var loadRecipes = function (event) {
     document.getElementById("food-form").reset();
 }
 
+// event  handler for deleting an item from the eats menu
+var eatsMenuHandler = function(event){
+    var eatsMenuClickTarget = event.target;
+    var eatsMenuClickTargetClasses = eatsMenuClickTarget.classList;
+    
+    if (eatsMenuClickTargetClasses.contains('eats-menu-item-delete')){
+        var localFoodIndex = event.target.id;
+        localFoodIndex = localFoodIndex.substring(15);
+
+        var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
+        console.log(localFoodIndex, foodRecipesLocal);
+
+        foodRecipesLocal.splice(localFoodIndex, 1);
+
+        console.log(foodRecipesLocal);
+        
+        localStorage.setItem('foodRecipes', JSON.stringify(foodRecipesLocal));
+
+        loadSavedMenu();
+    }
+};
+
 // RECIPE END
 var btn = document.getElementById("search-recipes");
 btn.addEventListener("click", loadRecipes);
@@ -318,5 +337,6 @@ spiritBtn.addEventListener("click", loadDrinks);
 var responseContainerEl = document.getElementById('response-container');
 responseContainerEl.addEventListener('click', drinkRecipeHandler);
 drinksContainerEl.addEventListener('click', drinkMenuHandler);
+eatsContainerEl.addEventListener('click', eatsMenuHandler);
 
 loadSavedMenu();

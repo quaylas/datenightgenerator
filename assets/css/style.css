@@ -14,17 +14,17 @@ input[type="text" i] {
 .hero-body .container {
     margin: .25rem;
 }
-.drink-list-item, .drink-menu-item {
+.drink-list-item, .drink-menu-item, .eats-menu-item {
     padding: 15px;
     font-size: 20px;
     border-bottom: 1px solid #00d1b2;
 }
-.drink-list-item:hover, .drink-menu-item:hover{
+.drink-list-item:hover, .drink-menu-item:hover, .eats-menu-item:hover{
     background: rgba(0,209,198, .2);
     transition: .3s ease-in-out;
     color: rgba(0,0,0, .5);
 }
-.drink-list-item article, .drink-menu-item article{
+.drink-list-item article, .drink-menu-item article {
     font-size: 16px;
 }
 .drink-list-item ul, .drink-menu-item ul {
@@ -34,7 +34,7 @@ input[type="text" i] {
     padding-left: .5em;
     padding-bottom: 10px;
 }
-.drink-list-item i, .drink-menu-item .oi {
+.drink-list-item i, .drink-menu-item .oi, , .eats-menu-item .oi {
     float: right;
     color: #00d1b2;
     width: 10%;
@@ -70,7 +70,7 @@ input[type="text" i] {
 #menu-drinks, #menu-eats {
     margin: 0 7rem;
 }
-.drink-menu-item-container{
+.drink-menu-item-container, .eats-menu-item-container{
     display: inline-block;
     width: 89%;
 }
