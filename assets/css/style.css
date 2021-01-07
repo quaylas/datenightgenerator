@@ -1,7 +1,12 @@
 .title {
     color: hsl(171, 100%, 41%);
 }
-
+.hero-body h1 {
+    font-size: 2.5rem !important;
+}
+.hero-body .container {
+    margin: .25rem;
+}
 .drink-list-item {
     padding: 15px;
     font-size: 20px;
@@ -50,6 +55,11 @@
 .content {
     color:hsl(0, 0%, 71%);
 }
+/*styling for intructions */
+.instructions {
+    background: rgba(0,209,198, .2) !important;
+    color: rgba(0,0,0, .5);
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -83,4 +93,3 @@
     text-decoration: none;
     cursor: pointer;
 }
-
