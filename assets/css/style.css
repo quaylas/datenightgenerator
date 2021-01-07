@@ -2,6 +2,12 @@
     color: hsl(171, 100%, 41%);
 }
 
+input[type="text" i] {
+    width: 50%;
+    border-radius: .25rem;
+    padding: 10px 5px;
+}
+
 .drink-list-item {
     padding: 15px;
     font-size: 20px;
@@ -38,7 +44,7 @@
 }
 
 .content h3 {
-    color:hsl(0, 0%, 71%) !important
+    color:hsl(0, 0%, 71%) !important;
 }
 /* The Modal (background) */
 .modal {
