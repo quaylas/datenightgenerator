@@ -4,6 +4,7 @@
 var spiritBtn = document.getElementById("spiritBtn");
 // variables for food API's
 var eatsContainerEl = document.getElementById("menu-eats");
+var drinksContainerEl = document.getElementById("menu-drinks");
 
 
 var getDrinksByMainIngredient = function (ingredient) {
@@ -27,7 +28,7 @@ var getDrinksByMainIngredient = function (ingredient) {
                     var drinkContainer = document.createElement('div');
                     drinkContainer.classList.add("drink-list-item");
                     // drinkContainer.textContent = data.drinks[random].strDrink;
-                    drinkContainer.innerHTML = `<div class="drink-name" data-drinkid="${data.drinks[random].idDrink}">${data.drinks[random].strDrink}</div> <i class="fas fa-save"></i>`;
+                    drinkContainer.innerHTML = `<div class="drink-name" data-drinkid="${data.drinks[random].idDrink}">${data.drinks[random].strDrink}</div> <i class="fas fa-save saveDrinkBtn" data-drinkname="${data.drinks[random].strDrink}" data-drinkid="${data.drinks[random].idDrink}"></i>`;
                     drinkContainer.setAttribute("data-drinkid", data.drinks[random].idDrink);
                     drinkContainer.setAttribute("data-id", i);
                     drinkList.appendChild(drinkContainer);
@@ -132,17 +133,41 @@ var toggleDrinkRecipe = function(drinkRecipeContainer){
 
 };
 
+var saveDrinkRecipe = function(drinkId, drinkName){
+    console.log(drinkId, drinkName);
+
+    var savedDrinkRecipes = JSON.parse(localStorage.getItem("drinkRecipes")) || [];
+    var drinkRecipe = { "name": drinkName, "id": drinkId };
+    savedDrinkRecipes.push(drinkRecipe);
+    localStorage.setItem("drinkRecipes", JSON.stringify(savedDrinkRecipes));
+
+    var drinkMenuItemContainer = document.createElement("div");
+    drinkMenuItemContainer.textContent = `${drinkName}`;
+    drinksContainerEl.appendChild(drinkMenuItemContainer);
+
+    drinkMenuItemContainer.innerHTML = `<div class="drink-name" data-drinkid="${drinkId}">${drinkName}</div> <span class="oi" data-glyph="trash"></span>`;
+
+};
+
 // event handler for a click on a returned drink recipe
 var drinkRecipeHandler = function (event) {
     var drinkId = event.target.getAttribute('data-drinkid');
     var drinkContainer = event.target;
     var drinkRecipeContainer = drinkContainer.firstElementChild;
 
-    if (!drinkRecipeContainer){
-        getDrinkRecipe(drinkId, drinkContainer);
+    if(drinkContainer.tagName === 'DIV'){
+
+        if (!drinkRecipeContainer){
+            getDrinkRecipe(drinkId, drinkContainer);
+        }
+        else {
+            toggleDrinkRecipe(drinkRecipeContainer);
+        }
     }
-    else {
-        toggleDrinkRecipe(drinkRecipeContainer);
+
+    else if (drinkContainer.tagName === 'I'){
+        var drinkName = event.target.getAttribute('data-drinkname');
+        saveDrinkRecipe(drinkId, drinkName);
     }
 };
 
@@ -194,6 +219,7 @@ var getRecipeByIngredient = function (ingredients, queryString) {
     });
     // 
 };
+
 var saveRecipe = function () {
     if (event.target.class = "span") {
         var savedRecipes = JSON.parse(localStorage.getItem("foodRecipes")) || [];
@@ -209,7 +235,7 @@ var saveRecipe = function () {
 };
 
 var loadSavedMenu = function () {
-    // load eats section start
+    // load eats section START
     var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
 
     if (foodRecipesLocal) {
@@ -219,6 +245,20 @@ var loadSavedMenu = function () {
             eatsContainerEl.appendChild(menuItemContainer);
         }
     }
+    // load eats section END
+
+    // load drinks section START
+    var drinkRecipesLocal = JSON. parse(localStorage.getItem("drinkRecipes"));
+    console.log(drinkRecipesLocal);
+
+    if (drinkRecipesLocal) {
+        for (k = 0; k < drinkRecipesLocal.length; k++) {
+            var drinkMenuItemContainer = document.createElement("p");
+            drinkMenuItemContainer.innerHTML = `<div class="drink-name" data-drinkid="${drinkRecipesLocal[k].id}">${drinkRecipesLocal[k].name}</div> <span class="oi" data-glyph="trash"></span>`;
+            drinksContainerEl.appendChild(drinkMenuItemContainer);
+        }
+    }
+    // load drinks section END
 };
 
 var loadRecipes = function (event) {
