@@ -1,6 +1,13 @@
 .title {
     color: hsl(171, 100%, 41%);
 }
+
+input[type="text" i] {
+    width: 50%;
+    border-radius: .25rem;
+    padding: 10px 5px;
+}
+
 .hero-body h1 {
     font-size: 2.5rem !important;
 }
@@ -55,6 +62,11 @@
 .content {
     color:hsl(0, 0%, 71%);
 }
+
+.content h3 {
+    color:hsl(0, 0%, 71%) !important;
+}
+
 /*styling for intructions */
 .instructions {
     background: rgba(0,209,198, .2) !important;
@@ -92,4 +104,8 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.footer {
+    padding: 1.5rem;
 }

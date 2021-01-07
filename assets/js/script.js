@@ -35,6 +35,7 @@ var getDrinksByMainIngredient = function (ingredient) {
                 };
                 // document.getElementById("response-container").innerHTML = drinkArray;
             }, error => {
+                console.error('Error', error);
                 var modal = document.getElementById("myModal");
                 modal.style.display = "block";
 
@@ -73,7 +74,7 @@ var getDrinkRecipe = function (drinkId, drinkContainer) {
 };
 
 // function to take returned drink recipe data and inject the recipe into the page
-var printDrinkRecipe = function(data, drinkContainer) {
+var printDrinkRecipe = function (data, drinkContainer) {
 
     // create an unordered list to hold the drink recipe
     var drinkRecipe = document.createElement('div');
@@ -102,9 +103,9 @@ var printDrinkRecipe = function(data, drinkContainer) {
             drinkQuantities.push(propertyValue);
         }
     }
-    for (var k = 0; k < drinkIngredients.length; k++){
+    for (var k = 0; k < drinkIngredients.length; k++) {
         var drinkRecipeListItem = document.createElement('li');
-        if (drinkQuantities[k]){
+        if (drinkQuantities[k]) {
             drinkRecipeListItem.textContent = `${drinkQuantities[k]} ${drinkIngredients[k]}`;
         }
         else {
@@ -177,7 +178,7 @@ var drinkMenuHandler = function(event){
 };
 
 
-    // saving recipe into array and populating the first 3 results, then we are able to save the recipe to the Menu section of the page AKA append to the child container of menu 
+// saving recipe into array and populating the first 3 results, then we are able to save the recipe to the Menu section of the page AKA append to the child container of menu 
 ;
 var saveRecipe = function () {
     if (event.target.class = "span") {
@@ -241,8 +242,20 @@ var getRecipeByIngredient = function (ingredients, queryString) {
                 }
             }
         });
+    }, error => {
+        console.error('Error:', error);
+        var modal = document.getElementById("errorModal");
+        modal.style.display = "block";
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("modal-exit");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
     });
-    
+
 };
 
 var saveRecipe = function () {
