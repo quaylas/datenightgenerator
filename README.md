@@ -39,9 +39,13 @@ THEN I can select a recipe from a short list of dishes.
 
 ## Key Features
 
+<<<<<<< HEAD
 * Allows users to input search criteria
 * Displays recipes choices inline 
 * Allows users to save drink and food recipes to local storage
+=======
+* Responsive layout leveraging the Bulma CSS Framework.
+>>>>>>> 762769185aef423ed81c3d7b4d3194ade5bec453
 
 ---
 ## Future Improvements
