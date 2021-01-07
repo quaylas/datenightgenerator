@@ -128,11 +128,39 @@ var drinkRecipeHandler = function (event) {
     getDrinkRecipe(drinkId, drinkContainer);
 };
 
+
+// saving recipe into array and populating the first 3 results, then we are able to save the recipe to the Menu section of the page AKA append to the child container of menu 
+;
+var saveRecipe = function () {
+    if (event.target.class = "span") {
+        var savedRecipes = JSON.parse(localStorage.getItem("foodRecipes")) || [];
+        var recipe = { "name": event.target.getAttribute("data-name"), "url": event.target.getAttribute("data-url") };
+        savedRecipes.push(recipe);
+        localStorage.setItem("foodRecipes", JSON.stringify(savedRecipes));
+        console.log(savedRecipes);
+        var menuItemContainer = document.createElement("p");
+        menuItemContainer.innerHTML = `<a href="${event.target.getAttribute("data-url")}" target="_blank">${event.target.getAttribute("data-name")}</a>`;
+        eatsContainerEl.appendChild(menuItemContainer);
+
+    }
+};
+// save the recipe into localStrorage/Menu section of page
+var loadSavedMenu = function () {
+    // load eats section start
+    var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"))
+    console.log(foodRecipesLocal)
+    if (foodRecipesLocal) {
+        for (i = 0; i < foodRecipesLocal.length; i++) {
+            var menuItemContainer = document.createElement("p");
+            menuItemContainer.innerHTML = `<a href="${foodRecipesLocal[i].url}" target="_blank">${foodRecipesLocal[i].name}</a>`;
+            eatsContainerEl.appendChild(menuItemContainer);
+        }
+    }
+};
 var getRecipeByIngredient = function (ingredients, queryString) {
     event.preventDefault()
     // recipe code starts
     var page = 2;
-
     var apiUrl =
         "https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=" +
         ingredients +
@@ -141,40 +169,29 @@ var getRecipeByIngredient = function (ingredients, queryString) {
         "&p=" +
         page;
     fetch(apiUrl).then(function (response) {
-
-
         response.json().then(function (data) {
             var recipeContainer = document.getElementById("recipe-container");
             recipeContainer.innerHTML = "";
             var recipeObject = data.results;
             console.log(recipeObject.length);
-            debugger
             if (recipeObject.length > 0) {
                 for (i = 0; i < 3; i++) {
                     var recipe = data.results[i].title;
                     var recipeUrl = data.results[i].href;
                     var recipeName = document.createElement("p");
                     recipeName.innerHTML = `<a href="${recipeUrl}" target="_blank">${recipe}</a> <span class="saveRecipe" data-name="${recipe}" data-url="${recipeUrl}">Save Recipe</span>`;
-                    // recipeName.onclick= saveBtn;
-
-
                     recipeContainer.appendChild(recipeName);
-
                 }
             } else {
-
                 var modal = document.getElementById("myModal");
                 modal.style.display = "block";
-
                 // Get the <span> element that closes the modal
                 var span = document.getElementById("modal-close");
-
                 // When the user clicks on <span> (x), close the modal
                 span.onclick = function () {
                     modal.style.display = "none";
                 }
             }
-
         });
     }, error => {
         console.error('Error:', error);
@@ -189,34 +206,8 @@ var getRecipeByIngredient = function (ingredients, queryString) {
             modal.style.display = "none";
         }
     });
-};
-var saveRecipe = function () {
-    if (event.target.class = "span") {
-        var savedRecipes = JSON.parse(localStorage.getItem("foodRecipes")) || [];
-        var recipe = { "name": event.target.getAttribute("data-name"), "url": event.target.getAttribute("data-url") };
-        savedRecipes.push(recipe);
-        localStorage.setItem("foodRecipes", JSON.stringify(savedRecipes));
-        console.log(savedRecipes);
-        var menuItemContainer = document.createElement("p");
-        menuItemContainer.innerHTML = `<a href="${event.target.getAttribute("data-url")}" target="_blank">${event.target.getAttribute("data-name")}</a>`;
-        eatsContainerEl.appendChild(menuItemContainer);
 
-    }
 };
-
-var loadSavedMenu = function () {
-    // load eats section start
-    var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"))
-    console.log(foodRecipesLocal)
-    if (foodRecipesLocal) {
-        for (i = 0; i < foodRecipesLocal.length; i++) {
-            var menuItemContainer = document.createElement("p");
-            menuItemContainer.innerHTML = `<a href="${foodRecipesLocal[i].url}" target="_blank">${foodRecipesLocal[i].name}</a>`;
-            eatsContainerEl.appendChild(menuItemContainer);
-        }
-    }
-};
-
 var loadRecipes = function (event) {
     event.preventDefault();
     var ingredientInput = document.getElementById("ingredient-input").value.trim();
