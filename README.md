@@ -39,7 +39,9 @@ THEN I can select a recipe from a short list of dishes.
 
 ## Key Features
 
-* Responsive layout leveraging ...
+* Allows users to input search criteria
+* Displays recipes choices inline 
+* Allows users to save drink and food recipes to local storage
 
 ---
 ## Future Improvements
@@ -52,7 +54,7 @@ THEN I can select a recipe from a short list of dishes.
 ---
 ## Links
 
-Deployed Application:
+Deployed Application: https://quaylas.github.io/datenightgenerator/
 
 GitHub Repository: https://github.com/quaylas/datenightgenerator
 
