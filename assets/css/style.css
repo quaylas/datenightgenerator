@@ -1,51 +1,62 @@
-.title {
-    color: hsl(171, 100%, 41%);
-}
-
-input[type="text" i] {
-    width: 50%;
-    border-radius: .25rem;
-    padding: 10px 5px;
-}
-
+/* Hero Adjustments START */
 .hero-body h1 {
     font-size: 2.5rem !important;
 }
 .hero-body .container {
     margin: .25rem;
 }
-.drink-list-item {
+/* Hero Adjustments END */
+
+.title {
+    color: hsl(171, 100%, 41%);
+}
+.subtitle {
+    color: rgba(0,0,0, .5);
+}
+a {
+    color: hsl(0, 0%, 71%);
+}
+a:hover {
+    color: rgba(0,0,0, .5);
+    cursor: pointer;
+}
+input[type="text" i] {
+    width: 50%;
+    border-radius: .25rem;
+    padding: 10px 5px;
+}
+.drink-list-item, .drink-menu-item, .eats-menu-item, .food-list-item {
     padding: 15px;
     font-size: 20px;
     border-bottom: 1px solid #00d1b2;
 }
-.drink-list-item:hover{
+.drink-list-item:hover, .drink-menu-item:hover, .eats-menu-item:hover, .food-list-item:hover{
     background: rgba(0,209,198, .2);
     transition: .3s ease-in-out;
     color: rgba(0,0,0, .5);
 }
-.drink-list-item article {
+.drink-list-item article, .drink-menu-item article {
     font-size: 16px;
 }
-.drink-list-item ul {
+.drink-list-item ul, .drink-menu-item ul {
     margin-left: 1.5em;
 }
-.drink-list-item p {
+.drink-list-item p, .drink-menu-item p {
     padding-left: .5em;
     padding-bottom: 10px;
 }
-.drink-list-item i {
+.drink-list-item i, .drink-menu-item .oi, .eats-menu-item .oi, .food-list-item i {
     float: right;
     color: #00d1b2;
     width: 10%;
     padding: 7px 0;
     text-align: center;
 }
-.drink-list-item i:hover {
+.drink-list-item i:hover, .drink-menu-item .oi:hover, .food-list-item i:hover {
     color: rgba(0,0,0, .5);
     transition: .2s ease-in-out;
 }
-.drink-name {
+.drink-name, .food-name {
     display: inline-block;
     width: 90%;
 }
@@ -55,18 +66,28 @@ input[type="text" i] {
 .recipe-displayed {
     display: block;
 }
-.subtitle {
-    color: hsl(0, 0%, 71%);
-}
 
 .content {
     color:hsl(0, 0%, 71%);
 }
 
 .content h3 {
-    color:hsl(0, 0%, 71%) !important;
+    color: rgba(0,0,0, .5) !important;
 }
-
+/* Styling for menu START */
+.menu-placeholder {
+    text-align:center;
+    color: rgba(0,209,198, .5);
+    font-style: italic;
+}
+#menu-drinks, #menu-eats {
+    margin: 0 7rem;
+}
+.drink-menu-item-container, .eats-menu-item-container{
+    display: inline-block;
+    width: 89%;
+}
+/* Styling for menu END */
 /*styling for intructions */
 .instructions {
     background: rgba(0,209,198, .2) !important;
