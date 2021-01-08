@@ -219,9 +219,11 @@ var getRecipeByIngredient = function (ingredients, queryString) {
                 for (i = 0; i < 3; i++) {
                     var recipe = data.results[i].title;
                     var recipeUrl = data.results[i].href;
-                    var recipeName = document.createElement("p");
-                    recipeName.innerHTML = `<a href="${recipeUrl}" target="_blank">${recipe}</a> <span class="saveRecipe" data-name="${recipe}" data-url="${recipeUrl}">Save Recipe</span>`;
-                    recipeContainer.appendChild(recipeName);
+                    var recipeListItem = document.createElement('div');
+                    recipeListItem.className = 'food-list-item';
+                    recipeListItem.innerHTML = `<div class="food-name"><a href="${recipeUrl}" target="_blank">${recipe}</a></div> <i class="fas fa-save saveRecipe" data-name="${recipe}" data-url="${recipeUrl}"></i>`;
+                    
+                    recipeContainer.appendChild(recipeListItem);
                 }
             } else {
                 var modal = document.getElementById("myModal");
@@ -251,8 +253,8 @@ var getRecipeByIngredient = function (ingredients, queryString) {
 };
 
 // saving recipe into array and populating the first 3 results, then we are able to save the recipe to the Menu section of the page AKA append to the child container of menu
-var saveRecipe = function () {
-    if (event.target.class = "span") {
+var saveRecipe = function (event) {
+    if (event.target.tagName = "I") {
         var savedRecipes = JSON.parse(localStorage.getItem("foodRecipes")) || [];
         var recipe = { "name": event.target.getAttribute("data-name"), "url": event.target.getAttribute("data-url") };
         savedRecipes.push(recipe);
