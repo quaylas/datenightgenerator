@@ -267,7 +267,8 @@ var saveRecipe = function (event) {
 var loadSavedMenu = function () {
     // load eats section START
     var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
-
+    console.log(foodRecipesLocal);
+    
     if (foodRecipesLocal) {
         eatsContainerEl.innerHTML =  '';
         for (i = 0; i < foodRecipesLocal.length; i++) {
