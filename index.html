@@ -4,14 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Date Night</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="/open-iconic/font/css/open-iconic.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
-    
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="modal-close" class="close">&times;</span>
+            <p>Oops! Your search did not return any recipes. Please check your spelling and
+                try again!</p>
+        </div>
+    </div>
+    <div id="errorModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="modal-exit" class="close">&times;</span>
+            <p>Could not connect to resource. Please try again soon.</p>
+        </div>
+    </div>
+    <section class='hero is-primary'>
+        <div class='hero-body'>
+            <div class="container">
+                <h1 class="title">
+                    Date Night Generator
+                </h1>
+                <h2 class="subtitle">
+                    For all your special evenings at home
+                </h2>
+            </div>
+        </div>
+        <div class='hero-foot'>
+        </div>
+    </section>
+    <div class="section">
+        <div class="notification instructions">
+            <h2 class="title"><strong>Let's Plan a Night In!</strong></h2>
+            <li>Enter a drink or food ingredient into the following search bars.</li>
+            <li>Once results have populated, click on the recipe name to explore it. If you like the recipe, click on
+                the save icon to add it to the menu.</li>
+            <li>The menu section will provide you with all your saved food and drink recipes from your searches. Try
+                something new and have fun! </li>
 
-
-
-
+        </div>
+    </div>
+    <section class='section'>
+        <div class="tile is-ancestor is-dark">
+            <div class="tile is-parent s-vertical">
+                <article class="tile is-child box">
+                    <h2 class="title">Cocktails</h2>
+                    <p class="subtitle">Let's pick the perfect drink</p>
+                    <div class="content">
+                        <form id="drink-form">
+                            <div class="form-group">
+                                <input type="text" id="spiritInput" name="spirit"
+                                    placeholder="Enter Drink Ingredient" />
+                                <button type="submit" id="spiritBtn" class="button is-primary"><span
+                                        class="oi oi-magnifying-glass"></span></button>
+                                <div id="response-container"></div>
+                            </div>
+                        </form>
+                </article>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <h2 class="title">Food</h2>
+                    <p class="subtitle">Let's pick the perfect dinner</p>
+                    <div class="content">
+                        <form id="food-form">
+                            <div class="form-group">
+                                <input type="text" name="ingredient" id="ingredient-input"
+                                    placeholder="Enter Food Ingredient" />
+                                <button type="submit" id="search-recipes" class="button is-primary"><span
+                                        class="oi oi-magnifying-glass"></span></button>
+                                <div id="recipe-container"></div>
+                            </div>
+                        </form>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="tile is-ancestor is-dark">
+            <div class="tile is-parent is-vertical box">
+                <article class="tile is-child is-12">
+                    <h2 class="title">Menu</h2>
+                </article>
+                <article class="tile is-child is-12 box">
+                    <div class="content">
+                        <h3 class="title">Drinks</h3>
+                        <div id="menu-drinks"></div>
+                    </div>
+                </article>
+                <article class="tile is-child is-12 box">
+                    <div class="content">
+                        <h3 class="title">Eats</h3>
+                        <div id="menu-eats"></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <footer class='footer'>
+        <img src="./assets/images/logo 2.png" alt="DNG logo with moon" width="100" height="100">
+        <h2>❤️ Made with love by MP, QS, & SG</h2>
+        &copy; 2021 Date Night Generator
+    </footer>
+    <script src='./assets/js/script.js'></script>
 </body>
+
 
 </html>
