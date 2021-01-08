@@ -75,6 +75,11 @@ input[type="text" i] {
     color: rgba(0,0,0, .5) !important;
 }
 /* Styling for menu START */
+.menu-placeholder {
+    text-align:center;
+    color: rgba(0,209,198, .5);
+    font-style: italic;
+}
 #menu-drinks, #menu-eats {
     margin: 0 7rem;
 }
