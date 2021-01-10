@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date Night</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link href="/open-iconic/font/css/open-iconic.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -42,7 +44,7 @@
         <div class='hero-foot'>
         </div>
     </section>
-    <div class="section">
+    <section class="section">
         <div class="notification instructions">
             <h2 class="title"><strong>Let's Plan a Night In!</strong></h2>
             <li>Enter a drink or food ingredient into the following search bars.</li>
@@ -52,7 +54,7 @@
                 something new and have fun! </li>
 
         </div>
-    </div>
+    </section>
     <section class='section'>
         <div class="tile is-ancestor is-dark">
             <div class="tile is-parent s-vertical">
@@ -66,7 +68,7 @@
                                     placeholder="Enter Drink Ingredient" />
                                 <button type="submit" id="spiritBtn" class="button is-primary"><span
                                         class="oi oi-magnifying-glass"></span></button>
-                                <div id="response-container"></div>
+                                <div id="drink-container"></div>
                             </div>
                         </form>
                 </article>
@@ -97,13 +99,19 @@
                 <article class="tile is-child is-12 box">
                     <div class="content">
                         <h3 class="title">Drinks</h3>
-                        <div id="menu-drinks"><div class="menu-placeholder">Recipes you save from the cocktails search will populate here.</div></div>
+                        <div id="menu-drinks">
+                            <div class="menu-placeholder">Recipes you save from the cocktails search will populate here.
+                            </div>
+                        </div>
                     </div>
                 </article>
                 <article class="tile is-child is-12 box">
                     <div class="content">
                         <h3 class="title">Eats</h3>
-                        <div id="menu-eats"><div class="menu-placeholder">Recipes you save from the food search will populate here.</div></div>
+                        <div id="menu-eats">
+                            <div class="menu-placeholder">Recipes you save from the food search will populate here.
+                            </div>
+                        </div>
                     </div>
                 </article>
             </div>

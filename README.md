@@ -63,10 +63,12 @@ GitHub Repository: https://github.com/quaylas/datenightgenerator
 ---
 ## Images
 ### Desktop View
-<!-- 
+
 1440px X 1112px
 
 ![Image of desktop view](./assets/images/DesktopView.png)
+
+![Second image of desktop view](./assets/images/DesktopView2.png)
 
 ### iPad View
 
@@ -74,8 +76,12 @@ GitHub Repository: https://github.com/quaylas/datenightgenerator
 
 ![Image of iPad view](./assets/images/iPadView.png)
 
+![Second image of iPad view](./assets/images/iPadView2.png)
+
 ### iPhone 6 View
 
 375px X 667px
 
-![Image of iPhone 6 view](./assets/images/iPhone6View.png) -->
+![Image of iPhone 6 view](./assets/images/iPhone6View.png)
+
+![Second image of iPhone 6 view](./assets/images/iPhone6View2.png)
