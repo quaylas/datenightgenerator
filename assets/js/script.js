@@ -49,6 +49,18 @@ var getDrinksByMainIngredient = function (ingredient) {
             });
         }
 
+    }, error => {
+        console.error('Error:', error);
+        var modal = document.getElementById("errorModal");
+        modal.style.display = "block";
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("modal-exit");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
     });
 };
 
@@ -122,19 +134,19 @@ var printDrinkRecipe = function (data, drinkContainer) {
     drinkContainer.appendChild(drinkRecipe);
 };
 
-var toggleDrinkRecipe = function(drinkRecipeContainer){
+var toggleDrinkRecipe = function (drinkRecipeContainer) {
     var recipeClassName = drinkRecipeContainer.className;
 
-    if (recipeClassName === 'recipe-displayed'){
+    if (recipeClassName === 'recipe-displayed') {
         drinkRecipeContainer.className = 'recipe-hidden';
     }
-    else if (recipeClassName === 'recipe-hidden'){
+    else if (recipeClassName === 'recipe-hidden') {
         drinkRecipeContainer.className = 'recipe-displayed';
     }
 
 };
 
-var saveDrinkRecipe = function(drinkId, drinkName){
+var saveDrinkRecipe = function (drinkId, drinkName) {
     console.log(drinkId, drinkName);
 
     var savedDrinkRecipes = JSON.parse(localStorage.getItem("drinkRecipes")) || [];
@@ -144,7 +156,7 @@ var saveDrinkRecipe = function(drinkId, drinkName){
 
     loadSavedMenu();
 
-    
+
 
 };
 
@@ -154,9 +166,9 @@ var drinkRecipeHandler = function (event) {
     var drinkContainer = event.target;
     var drinkRecipeContainer = drinkContainer.firstElementChild;
 
-    if(drinkContainer.tagName === 'DIV'){
+    if (drinkContainer.tagName === 'DIV') {
 
-        if (!drinkRecipeContainer){
+        if (!drinkRecipeContainer) {
             getDrinkRecipe(drinkId, drinkContainer);
         }
         else {
@@ -164,35 +176,35 @@ var drinkRecipeHandler = function (event) {
         }
     }
 
-    else if (drinkContainer.tagName === 'I'){
+    else if (drinkContainer.tagName === 'I') {
         var drinkName = event.target.getAttribute('data-drinkname');
         saveDrinkRecipe(drinkId, drinkName);
     }
 };
 
 // event  handler for a click on a drink in the menu
-var drinkMenuHandler = function(event){
+var drinkMenuHandler = function (event) {
     var drinkId = event.target.getAttribute('data-drinkid');
     var drinkContainer = event.target;
     var drinkMenuItemClasses = event.target.classList;
 
-    if (drinkMenuItemClasses.contains('drink-menu-item-container')){
+    if (drinkMenuItemClasses.contains('drink-menu-item-container')) {
         var drinkRecipeContainer = drinkContainer.firstElementChild;
-        if(!drinkRecipeContainer) {
+        if (!drinkRecipeContainer) {
             getDrinkRecipe(drinkId, drinkContainer);
         }
         else {
             toggleDrinkRecipe(drinkRecipeContainer);
         }
     }
-    else if (drinkMenuItemClasses.contains('drink-menu-item-delete')){
+    else if (drinkMenuItemClasses.contains('drink-menu-item-delete')) {
         var localDrinkIndex = event.target.id;
         localDrinkIndex = localDrinkIndex.substring(16);
         console.log(localDrinkIndex);
 
         var drinkRecipesLocal = JSON.parse(localStorage.getItem("drinkRecipes"));
         drinkRecipesLocal.splice(localDrinkIndex, 1);
-        
+
         localStorage.setItem('drinkRecipes', JSON.stringify(drinkRecipesLocal));
 
         loadSavedMenu();
@@ -209,7 +221,7 @@ var getRecipeByIngredient = function (ingredients, queryString) {
         queryString +
         "&p=" +
         page;
-        //if successful, return response to JSON
+    //if successful, return response to JSON
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
             var recipeContainer = document.getElementById("recipe-container");
@@ -222,7 +234,7 @@ var getRecipeByIngredient = function (ingredients, queryString) {
                     var recipeListItem = document.createElement('div');
                     recipeListItem.className = 'food-list-item';
                     recipeListItem.innerHTML = `<div class="food-name"><a href="${recipeUrl}" target="_blank">${recipe}</a></div> <i class="fas fa-save saveRecipe" data-name="${recipe}" data-url="${recipeUrl}"></i>`;
-                    
+
                     recipeContainer.appendChild(recipeListItem);
                 }
             } else {
@@ -268,9 +280,9 @@ var loadSavedMenu = function () {
     // load eats section START
     var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
     console.log(foodRecipesLocal);
-    
+
     if (foodRecipesLocal) {
-        eatsContainerEl.innerHTML =  '';
+        eatsContainerEl.innerHTML = '';
         for (i = 0; i < foodRecipesLocal.length; i++) {
             var menuItemContainer = document.createElement("div");
             menuItemContainer.className = 'eats-menu-item';
@@ -288,7 +300,7 @@ var loadSavedMenu = function () {
         drinksContainerEl.innerHTML = '';
         for (k = 0; k < drinkRecipesLocal.length; k++) {
             var drinkMenuItem = document.createElement("div");
-            drinkMenuItem.className ='drink-menu-item';
+            drinkMenuItem.className = 'drink-menu-item';
             drinkMenuItem.innerHTML = `<div class="drink-menu-item-container" data-drinkid="${drinkRecipesLocal[k].id}">${drinkRecipesLocal[k].name}</div> <span id="drink-menu-item-${k}"
             class="oi oi-trash drink-menu-item-delete" data-drinkid="${drinkRecipesLocal[k].id}"></span>`;
             drinksContainerEl.appendChild(drinkMenuItem);
@@ -305,11 +317,11 @@ var loadRecipes = function (event) {
 }
 
 // event  handler for deleting an item from the eats menu
-var eatsMenuHandler = function(event){
+var eatsMenuHandler = function (event) {
     var eatsMenuClickTarget = event.target;
     var eatsMenuClickTargetClasses = eatsMenuClickTarget.classList;
-    
-    if (eatsMenuClickTargetClasses.contains('eats-menu-item-delete')){
+
+    if (eatsMenuClickTargetClasses.contains('eats-menu-item-delete')) {
         var localFoodIndex = event.target.id;
         localFoodIndex = localFoodIndex.substring(15);
 
@@ -319,7 +331,7 @@ var eatsMenuHandler = function(event){
         foodRecipesLocal.splice(localFoodIndex, 1);
 
         console.log(foodRecipesLocal);
-        
+
         localStorage.setItem('foodRecipes', JSON.stringify(foodRecipesLocal));
 
         loadSavedMenu();
