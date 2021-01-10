@@ -1,12 +1,18 @@
-
-// begin drink section
-
-var spiritBtn = document.getElementById("spiritBtn");
-// variables for food API's
+// variables to support menu functions
 var eatsContainerEl = document.getElementById("menu-eats");
 var drinksContainerEl = document.getElementById("menu-drinks");
 
+// variables to support Cocktail functions
+var spiritBtn = document.getElementById("spiritBtn");
+var drinkContainerEl = document.getElementById('drink-container');
 
+// variables to support Food Recipe functions
+var btn = document.getElementById("search-recipes");
+var recipeContainerEl = document.getElementById("recipe-container");
+
+// Cocktail functions START 
+
+// Function to retrieve 5 random drinks containing an ingredient provided by the user
 var getDrinksByMainIngredient = function (ingredient) {
     // construct URL for api call using user input
     var apiURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
@@ -16,25 +22,26 @@ var getDrinksByMainIngredient = function (ingredient) {
         if (response.ok) {
             response.json().then(function (data) {
 
-                var drinkArray = [];
-                var drinkList = document.getElementById("response-container");
-                drinkList.innerHTML = '';
+                // clear previous search returns
+                drinkContainerEl.innerHTML = '';
 
+                // up to 5 times, generate a random number and push the drink from the API response that corresponds to it into the page (along with a save button)
                 for (var i = 0; i < Math.min(5, data.drinks.length); i++) {
 
                     var random = Math.floor(Math.random() * data.drinks.length);
-                    drinkArray.push(data.drinks[random].strDrink);
 
                     var drinkContainer = document.createElement('div');
                     drinkContainer.classList.add("drink-list-item");
-                    // drinkContainer.textContent = data.drinks[random].strDrink;
+
                     drinkContainer.innerHTML = `<div class="drink-name" data-drinkid="${data.drinks[random].idDrink}">${data.drinks[random].strDrink}</div> <i class="fas fa-save saveDrinkBtn" data-drinkname="${data.drinks[random].strDrink}" data-drinkid="${data.drinks[random].idDrink}"></i>`;
                     drinkContainer.setAttribute("data-drinkid", data.drinks[random].idDrink);
                     drinkContainer.setAttribute("data-id", i);
-                    drinkList.appendChild(drinkContainer);
+                    drinkContainerEl.appendChild(drinkContainer);
                 };
-                // document.getElementById("response-container").innerHTML = drinkArray;
-            }, error => {
+            }, 
+            
+            // if anything goes wrong, display a modal
+            error => {
                 console.error('Error', error);
                 var modal = document.getElementById("myModal");
                 modal.style.display = "block";
@@ -64,6 +71,7 @@ var getDrinksByMainIngredient = function (ingredient) {
     });
 };
 
+// event handler for drink searchs
 var loadDrinks = function (event) {
     event.preventDefault();
     var spiritInput = document.getElementById("spiritInput").value.trim();
@@ -72,6 +80,7 @@ var loadDrinks = function (event) {
 
 // function to retrieve a drink recipe based on the drink ID
 var getDrinkRecipe = function (drinkId, drinkContainer) {
+    // construct API url using the drink ID
     var apiURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`;
 
     fetch(apiURL).then(function (response) {
@@ -99,7 +108,7 @@ var printDrinkRecipe = function (data, drinkContainer) {
     var drinkIngredients = [];
     var drinkQuantities = [];
 
-    // loop to retrieve ingredients and quantities from data and push them into our arrays
+    // loop to retrieve ingredients from data and push them into our array
     for (var i = 0; i < properties.length; i++) {
 
         // declare property name and value so they can be checked by if statements
@@ -115,6 +124,7 @@ var printDrinkRecipe = function (data, drinkContainer) {
             drinkQuantities.push(propertyValue);
         }
     }
+    // loop to retrieve quantities from data and push themm into our array
     for (var k = 0; k < drinkIngredients.length; k++) {
         var drinkRecipeListItem = document.createElement('li');
         if (drinkQuantities[k]) {
@@ -125,12 +135,17 @@ var printDrinkRecipe = function (data, drinkContainer) {
         }
         drinkIngredientsList.appendChild(drinkRecipeListItem);
     }
+
+    // append drink ingredients list to the recipe container
     drinkRecipe.appendChild(drinkIngredientsList);
+
+    // create and append drink instructions to the recipe container
     var drinkInstructions = document.createElement('p');
     drinkInstructions.classList.add('drink-recipe-instructions');
     drinkInstructions.textContent = `${data.drinks[0].strInstructions} Serve in a ${data.drinks[0].strGlass}`;
     drinkRecipe.appendChild(drinkInstructions);
 
+    // append drink recipe to the page
     drinkContainer.appendChild(drinkRecipe);
 };
 
@@ -166,7 +181,12 @@ var drinkRecipeHandler = function (event) {
     var drinkContainer = event.target;
     var drinkRecipeContainer = drinkContainer.firstElementChild;
 
+<<<<<<< HEAD
     if (drinkContainer.tagName === 'DIV') {
+=======
+    // for clicks on the drink name, either get or display/hide the drink recipe
+    if(drinkContainer.tagName === 'DIV'){
+>>>>>>> 470aff5953977f82eab28306d75c2b90fd7def17
 
         if (!drinkRecipeContainer) {
             getDrinkRecipe(drinkId, drinkContainer);
@@ -175,8 +195,13 @@ var drinkRecipeHandler = function (event) {
             toggleDrinkRecipe(drinkRecipeContainer);
         }
     }
+<<<<<<< HEAD
 
     else if (drinkContainer.tagName === 'I') {
+=======
+    // for clicks on the save button, save the drink to the menu
+    else if (drinkContainer.tagName === 'I'){
+>>>>>>> 470aff5953977f82eab28306d75c2b90fd7def17
         var drinkName = event.target.getAttribute('data-drinkname');
         saveDrinkRecipe(drinkId, drinkName);
     }
@@ -188,7 +213,12 @@ var drinkMenuHandler = function (event) {
     var drinkContainer = event.target;
     var drinkMenuItemClasses = event.target.classList;
 
+<<<<<<< HEAD
     if (drinkMenuItemClasses.contains('drink-menu-item-container')) {
+=======
+    // for clicks on the drink name, either get or display/hide the drink recipe
+    if (drinkMenuItemClasses.contains('drink-menu-item-container')){
+>>>>>>> 470aff5953977f82eab28306d75c2b90fd7def17
         var drinkRecipeContainer = drinkContainer.firstElementChild;
         if (!drinkRecipeContainer) {
             getDrinkRecipe(drinkId, drinkContainer);
@@ -197,23 +227,41 @@ var drinkMenuHandler = function (event) {
             toggleDrinkRecipe(drinkRecipeContainer);
         }
     }
+<<<<<<< HEAD
     else if (drinkMenuItemClasses.contains('drink-menu-item-delete')) {
+=======
+    // for clicks on the delete button, delete the drink from the menu
+    else if (drinkMenuItemClasses.contains('drink-menu-item-delete')){
+>>>>>>> 470aff5953977f82eab28306d75c2b90fd7def17
         var localDrinkIndex = event.target.id;
+        // get the index of the selected drink in local storage
         localDrinkIndex = localDrinkIndex.substring(16);
-        console.log(localDrinkIndex);
 
+        // retrieve the saved drinks array from local storage and remove the deleted drink
         var drinkRecipesLocal = JSON.parse(localStorage.getItem("drinkRecipes"));
         drinkRecipesLocal.splice(localDrinkIndex, 1);
+<<<<<<< HEAD
 
+=======
+        
+        // update local storage with the new saved drinks array
+>>>>>>> 470aff5953977f82eab28306d75c2b90fd7def17
         localStorage.setItem('drinkRecipes', JSON.stringify(drinkRecipesLocal));
 
+        // load the updated menu
         loadSavedMenu();
     }
 };
-var getRecipeByIngredient = function (ingredients, queryString) {
-    event.preventDefault()
+// Cocktail functions END
 
+// Food Recipe functions START
+
+// function to retrieve recipes based on an ingredient provided by the user
+var getRecipeByIngredient = function (ingredients, queryString) {
+    event.preventDefault();
+    // limit results returned by API
     var page = 2;
+    // construct API URL based on user input
     var apiUrl =
         "https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=" +
         ingredients +
@@ -227,17 +275,23 @@ var getRecipeByIngredient = function (ingredients, queryString) {
             var recipeContainer = document.getElementById("recipe-container");
             recipeContainer.innerHTML = "";
             var recipeObject = data.results;
+
+            // if recipes are returned, push 3 into the page as hyperlinks with save buttons
             if (recipeObject.length > 0) {
+
                 for (i = 0; i < 3; i++) {
-                    var recipe = data.results[i].title;
-                    var recipeUrl = data.results[i].href;
+                    var random = Math.floor(Math.random() * 10);
+                    var recipe = data.results[random].title;
+                    var recipeUrl = data.results[random].href;
                     var recipeListItem = document.createElement('div');
                     recipeListItem.className = 'food-list-item';
                     recipeListItem.innerHTML = `<div class="food-name"><a href="${recipeUrl}" target="_blank">${recipe}</a></div> <i class="fas fa-save saveRecipe" data-name="${recipe}" data-url="${recipeUrl}"></i>`;
 
                     recipeContainer.appendChild(recipeListItem);
                 }
-            } else {
+            } 
+            // if no recipes are returned, display a modal
+            else {
                 var modal = document.getElementById("myModal");
                 modal.style.display = "block";
                 // Get the <span> element that closes the modal
@@ -248,7 +302,9 @@ var getRecipeByIngredient = function (ingredients, queryString) {
                 }
             }
         });
-    }, error => {
+    }, 
+    // if anything goes wrong, display a modal
+    error => {
         console.error('Error:', error);
         var modal = document.getElementById("errorModal");
         modal.style.display = "block";
@@ -264,7 +320,7 @@ var getRecipeByIngredient = function (ingredients, queryString) {
 
 };
 
-// saving recipe into array and populating the first 3 results, then we are able to save the recipe to the Menu section of the page AKA append to the child container of menu
+// saving recipe into array for local storange and ad it to the Menu section of the page
 var saveRecipe = function (event) {
     if (event.target.tagName = "I") {
         var savedRecipes = JSON.parse(localStorage.getItem("foodRecipes")) || [];
@@ -276,6 +332,19 @@ var saveRecipe = function (event) {
     }
 };
 
+// event handler for food recipe search
+var loadRecipes = function (event) {
+    event.preventDefault();
+    var ingredientInput = document.getElementById("ingredient-input").value.trim();
+    getRecipeByIngredient(ingredientInput, "");
+    document.getElementById("food-form").reset();
+};
+
+// Food Recipe Functions END
+
+// Menu Functions START
+
+// function to check local storage for saved food/drink recipes and load them to the menu section
 var loadSavedMenu = function () {
     // load eats section START
     var foodRecipesLocal = JSON.parse(localStorage.getItem("foodRecipes"));
@@ -309,13 +378,6 @@ var loadSavedMenu = function () {
     // load drinks section END
 };
 
-var loadRecipes = function (event) {
-    event.preventDefault();
-    var ingredientInput = document.getElementById("ingredient-input").value.trim();
-    getRecipeByIngredient(ingredientInput, "");
-    document.getElementById("food-form").reset();
-}
-
 // event  handler for deleting an item from the eats menu
 var eatsMenuHandler = function (event) {
     var eatsMenuClickTarget = event.target;
@@ -338,20 +400,25 @@ var eatsMenuHandler = function (event) {
     }
 };
 
-// RECIPE END
-var btn = document.getElementById("search-recipes");
+// Menu functions END
+
+// event listener for Food Recipe search
 btn.addEventListener("click", loadRecipes);
 
-var recipeContainerEl = document.getElementById("recipe-container");
+// event listener for Food Recipe save buttons
+recipeContainerEl.addEventListener("click", saveRecipe);
 
-recipeContainerEl.addEventListener("click", saveRecipe)
-
-
-spiritBtn.addEventListener("click", loadDrinks);
-
-var responseContainerEl = document.getElementById('response-container');
-responseContainerEl.addEventListener('click', drinkRecipeHandler);
-drinksContainerEl.addEventListener('click', drinkMenuHandler);
+// event listener for Eats Menu
 eatsContainerEl.addEventListener('click', eatsMenuHandler);
 
+// event listener for Cocktail search
+spiritBtn.addEventListener("click", loadDrinks);
+
+// event listener for drink recipes/save buttons
+drinkContainerEl.addEventListener('click', drinkRecipeHandler);
+
+// even listener for Drinks Menu
+drinksContainerEl.addEventListener('click', drinkMenuHandler);
+
+// Check for/Load Saved Menu
 loadSavedMenu();
