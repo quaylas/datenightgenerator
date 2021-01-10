@@ -25,6 +25,9 @@ input[type="text" i] {
     border-radius: .25rem;
     padding: 10px 5px;
 }
+.section {
+    padding: 1.5rem !important;
+}
 .drink-list-item, .drink-menu-item, .eats-menu-item, .food-list-item {
     padding: 15px;
     font-size: 20px;
@@ -129,4 +132,33 @@ input[type="text" i] {
 
 .footer {
     padding: 1.5rem;
+}
+/* Media query for widths up to 575px  */
+@media screen and (max-width: 575px) {
+    input[type="text" i] {
+        width: 80%;
+        border-radius: .25rem;
+        padding: 10px 5px;
+    }
+    #menu-drinks, #menu-eats {
+        margin: 0 1rem;
+    }
+    .drink-list-item, .drink-menu-item, .eats-menu-item, .food-list-item {
+        font-size: 18px;
+
+    }
+    .title {
+        font-size: 1.75rem;
+
+    }
+    li {
+        padding: 7px 0;
+    }
+    .hero.is-primary .subtitle {
+        padding-top: 10px;
+        font-size: 1.2rem;
+    }
+    .hero-body h1 {
+        font-size: 2rem !important;
+    }
 }
